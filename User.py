@@ -1,4 +1,4 @@
-from flask import Flask, session, redirect, url_for, escape, request
+from flask import Flask, session, redirect, url_for, escape, request, render_template
 
 app = Flask(__name__)
 
@@ -13,12 +13,8 @@ def login():
     if request.method == 'POST':
         session['username'] = request.form['username']
         return redirect(url_for('index'))
-    return '''
-        <form action="" method="post">
-            <p><input type=text name=username>
-            <p><input type=submit value=Login>
-        </form>
-    '''
+    return render_template('UserTemplate.html', a_variable=[5])
+
 
 @app.route('/logout')
 def logout():
